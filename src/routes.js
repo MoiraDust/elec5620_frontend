@@ -1,10 +1,11 @@
 import Attendance from "views/Attendance.js";
-import Discussion from "views/Discussion.js";
+import Discussion from "views/DiscussionBoard/Discussion";
 import Icons from "views/Icons.js";
 import Typography from "views/Typography.js";
 import TimeTable from "views/TimeTable.js";
 import Maps from "views/Maps.js";
 import UserPage from "views/UserPage.js";
+import FaceManage from "views/FaceManagement/FaceManage";
 
 var dashRoutes = [
   {
@@ -36,6 +37,13 @@ var dashRoutes = [
     layout: "/admin",
   },
   {
+    path: "/face-manage",
+    name: "Face Management",
+    icon: "business_badge",
+    component: FaceManage,
+    layout: "/admin",
+  },
+  {
     path: "/icons",
     name: "Icons",
     icon: "design_image",
@@ -55,6 +63,6 @@ var dashRoutes = [
     icon: "design-2_ruler-pencil",
     component: Typography,
     layout: "/admin",
-  }
+  },
 ];
 export default dashRoutes;
