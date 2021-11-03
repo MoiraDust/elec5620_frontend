@@ -79,3 +79,4 @@ yarn-error.log*
 .npm/
 yarn.lock
 backup
+package-lock.json

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 import { Button, Input, Form, FormGroup, Label, FormText } from "reactstrap";
 import { Link, Route, Switch } from "react-router-dom";
+import axios from "axios";
+import qs from 'qs';
 
 import PanelHeader from "../../components/PanelHeader/PanelHeader";
 
@@ -26,6 +28,24 @@ export default class FaceManage extends Component {
     this.setState({ operate: "add" });
     console.log("set", this.state);
   };
+
+  testSpring = () =>{
+        
+    console.log("测试跨域问题！");
+    axios.post('http://localhost:8080/findTest', 
+    qs.stringify({
+        id: '42',
+        lastName: '你好'
+      })
+      )
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+}
 
   render() {
     return (
@@ -119,6 +139,7 @@ export default class FaceManage extends Component {
                           }}
                         >
                           <Button>Submit</Button>
+                          <Button onClick={this.testSpring}>测试跨域</Button>
                         </Col>
                       </FormGroup>
                     </Form>
