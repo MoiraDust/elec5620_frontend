@@ -8,16 +8,16 @@ import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import routes from "routes/AdminRoutes";
+import routes from "routes/StudentRoutes";
 
 var ps;
 
-function Admin(props) {
+function Student(props) {
   const location = useLocation();
-  const [backgroundColor, setBackgroundColor] = React.useState("red");
-  const roleId = "admin";
+  const [backgroundColor, setBackgroundColor] = React.useState("blue");
+  const roleId = "student";
   /**修改：Get uname from cookies..*/
-  const uname = "Teacher Teacher";
+  const uname = "Students Students";
   const mainPanel = React.useRef();
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -54,11 +54,11 @@ function Admin(props) {
               />
             );
           })}
-          <Redirect from="/admin" to="/admin/attendance" />
+          <Redirect from="/student" to="/student/attendance" />
         </Switch>
       </div>
     </div>
   );
 }
 
-export default Admin;
+export default Student;

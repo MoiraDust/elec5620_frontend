@@ -33,7 +33,7 @@ function Sidebar(props) {
         <div
           className="simple-text logo-normal"
         >
-          USER NAME
+          {props.uname}
         </div>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
