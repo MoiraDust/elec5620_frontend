@@ -1,4 +1,4 @@
-import Attendance from "views/Attendance.js";
+import Attendance from "views/Student/Attendance.js";
 import Discussion from "views/DiscussionBoard/Discussion";
 import Icons from "views/Icons.js";
 import Typography from "views/Typography.js";

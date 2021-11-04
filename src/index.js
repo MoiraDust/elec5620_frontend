@@ -8,7 +8,9 @@ import "assets/css/demo.css";
 
 import AdminLayout from "layouts/Admin.js";
 import StudentLayout from "layouts/Student.js";
+import DiscussionList from "views/DiscussionBoard/DiscussionList"
 import DiscussionContent from "views/DiscussionBoard/DiscussionContent";
+
 
 import NotFound from "views/NotFound/NotFound.jsx"
 
@@ -17,7 +19,11 @@ ReactDOM.render(
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
 
-      <Route path="/discussion" component={DiscussionContent} />
+      {/* Discussion  Board */}
+      <Route path="/discussion/course/" component={DiscussionList} />
+      <Route path="/discussion/course/:courseId/" component={DiscussionList} />
+      <Route path="/discussion/topic/" component={DiscussionContent} />
+      <Route path="/discussion/topic/:topicId/" component={DiscussionContent} />
 
       <Route path="/student" render={(props) => <StudentLayout {...props} />} />
 

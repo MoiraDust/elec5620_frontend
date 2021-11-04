@@ -16,7 +16,7 @@ import {
 // core components
 import PanelHeader from "../../components/PanelHeader/PanelHeader";
 
-import DiscussionList from "./DiscussionList";
+import DiscussionDashboard from "./DiscussionDashboard";
 
 function Discussion() {
 
@@ -49,8 +49,7 @@ function Discussion() {
       message: (
         <div>
           <div>
-            Welcome to <b>Now UI Dashboard React</b> - a beautiful freebie for
-            every web developer.
+            Welcome to <b>Discussion Board</b>
           </div>
         </div>
       ),
@@ -74,8 +73,7 @@ function Discussion() {
         }
       />
       <div className="content">
-        <NotificationAlert ref={notificationAlert} />
-       <DiscussionList />
+       <DiscussionDashboard />
       </div>
     </>
   );

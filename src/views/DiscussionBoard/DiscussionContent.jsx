@@ -12,33 +12,58 @@ import {
     Button,
   } from "reactstrap";
 
-import PanelHeader from "../../components/PanelHeader/PanelHeader";
+import PanelHeader from "components/PanelHeader/PanelHeader.js";
+import ReplyBox from "./ReplyBox"
+import ReplyList from "./ReplyList"
+import "./Discussion.css"
 
 export default class DiscussionContent extends Component {
 
-componentDidMount() {
-    PubSub.subscribe("CourseList",(_, courseObj)=>{
-        console.log("courseObj",courseObj);
-        this.setState(courseObj);
-    })
-    console.log("did mount",this.state);
-}
+  componentDidMount() {
+   /*  console.log("this.props",this.props); */
+    const replyObj = this.props.location.state.TopicObj.topic.replyObj
+    const topicObj = this.props.location.state.TopicObj.topic
+    console.log("topicObj",topicObj);
+    console.log("replyObj",replyObj);
+  }
+
   render() {
+    const replyObj = this.props.location.state.TopicObj.topic.replyObj
+    const topicObj = this.props.location.state.TopicObj.topic
     return (
       <>
-        <PanelHeader
-          content={
-            <div className="header text-center">
-              <h2 className="title">Discussion Board</h2>
-              <p className="category">Please Choose one course.</p>
-            </div>
-          }
-        />
-        <div className="content">
-          <Card>
-
-          </Card>
+       <PanelHeader size="sm" />
+      <div className="contentBox">
+        <Row>
+          <Col md={12}>
+            <Card className="contentCard">
+              <CardHeader>
+                <h2 className="disTitle">{topicObj.TopicTitle}</h2>
+                <hr/>
+              </CardHeader>
+              <CardBody>
+                <div className="disContent">
+                  <blockquote>
+                    <p className="blockquote">
+                    {topicObj.TopicContent}{" "}
+                    </p>
+                  </blockquote>
+                </div>
+                <div>
+                <small className="authorName">
+                   -- {topicObj.TopicAuthorName}
+                </small>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
         </div>
+        <ReplyList replyObj={replyObj}/>
+       <ReplyBox />
       </>
     );
   }

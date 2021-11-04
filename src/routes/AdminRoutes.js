@@ -1,4 +1,4 @@
-import Attendance from "views/Attendance.js";
+import Attendance from "views/Admin/Attendance.js";
 import Discussion from "views/DiscussionBoard/Discussion";
 import Icons from "views/Icons.js";
 import Typography from "views/Typography.js";
@@ -57,12 +57,12 @@ var adminRoutes = [
     component: Maps,
     layout: "/admin",
   }, */
- /*  {
+  {
     path: "/typography",
     name: "Typography",
     icon: "design-2_ruler-pencil",
     component: Typography,
     layout: "/admin",
-  }, */
+  },
 ];
 export default adminRoutes;

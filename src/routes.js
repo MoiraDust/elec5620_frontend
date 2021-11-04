@@ -1,11 +1,11 @@
-import Attendance from "views/Attendance.js";
+import Attendance from "views/Admin/Attendance.js";
 import Discussion from "views/DiscussionBoard/Discussion";
 import Icons from "views/Icons.js";
 import Typography from "views/Typography.js";
 import TimeTable from "views/TimeTable.js";
 import Maps from "views/Maps.js";
 import UserPage from "views/UserPage.js";
-import FaceManage from "views/FaceManagement/FaceManage";
+import FaceManage from "views/Admin/FaceManagement/FaceManage";
 
 var dashRoutes = [
   {
