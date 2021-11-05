@@ -19,12 +19,16 @@ import "./Discussion.css"
 
 export default class DiscussionContent extends Component {
 
+  state = {
+    replyContent:"",
+  }
+
   componentDidMount() {
    /*  console.log("this.props",this.props); */
-    const replyObj = this.props.location.state.TopicObj.topic.replyObj
+    /* const replyObj = this.props.location.state.TopicObj.topic.replyObj
     const topicObj = this.props.location.state.TopicObj.topic
     console.log("topicObj",topicObj);
-    console.log("replyObj",replyObj);
+    console.log("replyObj",replyObj); */
   }
 
   render() {
@@ -62,8 +66,7 @@ export default class DiscussionContent extends Component {
           </Col>
         </Row>
         </div>
-        <ReplyList replyObj={replyObj}/>
-       <ReplyBox />
+        <ReplyList replyObj={replyObj} topicObj={topicObj}/>
       </>
     );
   }
