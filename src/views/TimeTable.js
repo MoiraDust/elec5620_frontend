@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-
+//https://github.com/wojtekmaj/react-calendar/wiki/Recipes
 
 // reactstrap components
 import {
@@ -21,6 +21,29 @@ const LectureDate = [
   new Date(2021, 11, 1),
   new Date(2021, 11, 5),
 ];
+
+function tileContent({ date, view }) {
+  // Add class to tiles in month view only
+  if (view === 'month' && date.getDay() === 1) {
+    // Check if a date React-Calendar wants to check is on the list of dates to add class to
+      return <p onMouseEnter={
+        console.log('lecture')
+        }>ELEC5620 Lecture</p>;
+  } 
+  if (view === 'month' && date.getDay() === 5) {
+    // Check if a date React-Calendar wants to check is on the list of dates to add class to
+      return <p onMouseEnter={
+        console.log('capstone')
+        }>Capstone Meeting</p>;
+  }
+  if (view === 'month' && date.getDay() === 2) {
+    // Check if a date React-Calendar wants to check is on the list of dates to add class to
+      return <p onMouseEnter={
+        console.log('tutorial')
+        }>ELEC5620 Tutorial</p>;
+  } 
+}
+
 function TimeTable() {
   const [date, setDate] = useState(new Date());
   return (
@@ -35,15 +58,7 @@ function TimeTable() {
           value={date} 
           locale="en-GB"
           selectRange={true}
-          tileContent={
-            ({ activeStartDate, date, view }) => {
-              return view === 'month' && date.getDay() === 1
-              ? <p onMouseEnter={
-                  console.log('hi')
-                  }>ELEC5620 Lecture</p>
-              : null
-            }
-          }
+          tileContent={tileContent}
           />
         </div>
         {date.length > 0 ? (
