@@ -32,12 +32,7 @@ export default class FaceManage extends Component {
   testSpring = () =>{
         
     console.log("测试跨域问题！");
-    axios.post('http://localhost:8080/findTest', 
-    qs.stringify({
-        id: '42',
-        lastName: '你好'
-      })
-      )
+    axios.get('http://localhost:8080/api/user/getAllUsers')
       .then(function (response) {
         console.log(response.data);
       })

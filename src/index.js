@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/now-ui-dashboard.scss?v1.5.0";
 import "assets/css/demo.css";
 
+import Login from "./components/Login/Login.jsx"
+
 import AdminLayout from "layouts/Admin.js";
 import StudentLayout from "layouts/Student.js";
 import DiscussionList from "views/DiscussionBoard/DiscussionList"
@@ -26,6 +28,9 @@ ReactDOM.render(
       <Route path="/discussion/topic/:topicId/" component={DiscussionContent} />
 
       <Route path="/student" render={(props) => <StudentLayout {...props} />} />
+
+      <Route exact path="/" component={Login} />
+      <Route path="/login" component={Login} />
 
       <Route component={NotFound}/>
     </Switch>
