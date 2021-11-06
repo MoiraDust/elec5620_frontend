@@ -63,27 +63,6 @@ function TimeTable() {
       <div className="content">
         <Row>
           <Col xs={12}>
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Student Timetable</CardTitle>
-              </CardHeader>
-              <CardBody>
-                 <Table responsive>
-                  <thead className="text-primary">
-                    <tr>
-                     
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                  </tbody>
-                </Table>
-               
-              </CardBody>
-            </Card>
-          </Col>
-
-          <Col xs={12}>
             <Card className="card-plain">
               <CardHeader>
                 <CardTitle tag="h4">Book Loan Record</CardTitle>
