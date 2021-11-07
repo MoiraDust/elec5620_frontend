@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 import { Button, Input, Form, FormGroup, Label, FormText } from "reactstrap";
 import { Link, Route, Switch } from "react-router-dom";
 import axios from "axios";
-import qs from 'qs';
+import qs from "qs";
 
 import PanelHeader from "../../../components/PanelHeader/PanelHeader";
 
@@ -11,11 +11,7 @@ import "./face.css";
 
 export default class FaceManage extends Component {
   state = {
-    StudentList: [
-      { SID: 1, Sname: "name 1" },
-      { SID: 2, Sname: "name 2" },
-      { SID: 3, Sname: "name 3" },
-    ],
+    StudentList:[],
     operate: "slist",
   };
 
@@ -29,20 +25,38 @@ export default class FaceManage extends Component {
     console.log("set", this.state);
   };
 
-  testSpring = () =>{
-        
+  testSpring = () => {
     console.log("测试跨域问题！");
-    axios.get('http://localhost:8080/api/user/getAllUsers')
+    axios
+      .get("http://localhost:8080/api/user/getAllUsers")
       .then(function (response) {
         console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
+  };
 
-}
+  componentDidMount() {
+    (async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8081/api/student/getAllStudent"
+        );
+        if (res.status == 200) {
+          console.log("res",res.data);
+          this.setState({ StudentList: res.data });
+          console.log("StudentList",this.state.StudentList);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }
 
   render() {
+    const { StudentList } = this.state;
+    console.log("StudentList in render",StudentList);
     return (
       <>
         <PanelHeader size="sm" />
@@ -70,18 +84,18 @@ export default class FaceManage extends Component {
                 <Card>
                   <CardHeader>
                     {" "}
-                    <h5 className="title">Student List</h5>
+                    <h5 className="title" style={{textAlign: "center"}}>Student List</h5>
                   </CardHeader>
-                  <CardBody>
-                    {this.state.StudentList.map((studentObj) => {
+               <CardBody>
+                    {StudentList.map((studentObj) => {
                       return (
-                        <div key={studentObj.SID} >
+                        <div key={studentObj.studentId} >
                         <Row md={12}>
                         <Col md={4}>
-                            <h6>{studentObj.SID}</h6>
+                            <h6 className="tableCenter">{studentObj.studentId}</h6>
                           </Col>
                           <Col md={4}>
-                            <h6>{studentObj.Sname}</h6>
+                            <h6>{studentObj.firstName + " " + studentObj.lastName}</h6>
                           </Col>
                           <Col md={4}>
                             <a href="">View Photo</a>
