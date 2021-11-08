@@ -12,6 +12,7 @@ import AdminLayout from "layouts/Admin.js";
 import StudentLayout from "layouts/Student.js";
 import DiscussionList from "views/DiscussionBoard/DiscussionList"
 import DiscussionContent from "views/DiscussionBoard/DiscussionContent";
+import ChangePwd from "./components/Login/ChangePwd.jsx"
 
 
 import NotFound from "views/NotFound/NotFound.jsx"
@@ -31,6 +32,7 @@ ReactDOM.render(
 
       <Route exact path="/" component={Login} />
       <Route path="/login" component={Login} />
+      <Route path="/changepassword" component={ChangePwd} />
 
       <Route component={NotFound}/>
     </Switch>
