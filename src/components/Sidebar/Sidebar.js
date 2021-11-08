@@ -5,10 +5,12 @@ import { Nav } from "reactstrap";
 import PerfectScrollbar from "perfect-scrollbar";
 
 import logo from "logo-white.svg";
+import cookie from 'react-cookies';
 
 var ps;
 
 function Sidebar(props) {
+  const uname = cookie.load('firstName') + ' ' + cookie.load('lastName');
   const sidebar = React.useRef();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
@@ -33,7 +35,7 @@ function Sidebar(props) {
         <div
           className="simple-text logo-normal"
         >
-          {props.uname}
+          {uname}
         </div>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>

@@ -22,6 +22,7 @@ import {
   Input,
   UncontrolledTooltip,
 } from "reactstrap";
+import cookie from 'react-cookies'
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
@@ -34,6 +35,9 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 // } from "variables/charts.js";
 
 function Attendance() {
+
+  const uid = cookie.load("uid")
+  console.log("uid",uid)
 
 const studentAtten={
   course1:{

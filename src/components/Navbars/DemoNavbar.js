@@ -17,6 +17,7 @@ import {
   InputGroupAddon,
   Input,
 } from "reactstrap";
+import cookie from 'react-cookies'
 
 import routes from "routes.js";
 
@@ -86,6 +87,16 @@ function DemoNavbar(props) {
       sidebarToggle.current.classList.toggle("toggled");
     }
   }, [location]);
+
+  const logout =()=>{
+    cookie.remove("account");
+    cookie.remove("uid");
+    cookie.remove("firstName");
+    cookie.remove("lastName");
+    cookie.remove("role");
+    window.location.href = '/'
+  }
+
   return (
     // add or remove classes depending if we are on full-screen-maps page or not
     <Navbar
@@ -140,8 +151,7 @@ function DemoNavbar(props) {
                 </p>
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag="a">Profile</DropdownItem>
-                <DropdownItem tag="a">Log out</DropdownItem>
+                <DropdownItem tag="a" onClick={logout}>Log out</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </Nav>

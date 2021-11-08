@@ -12,6 +12,8 @@ import "./face.css";
 export default class FaceManage extends Component {
   state = {
     StudentList:[],
+    StudentHasNoPic:[],
+    StudentHasPic:[],
     operate: "slist",
   };
 
@@ -27,8 +29,11 @@ export default class FaceManage extends Component {
 
   testSpring = () => {
     console.log("测试跨域问题！");
-    axios
-      .get("http://localhost:8080/api/user/getAllUsers")
+    /* axios
+      .get("http://localhost:8080/api/user/getAllUsers") */
+    axios.post("http://localhost:8080/api/user/test", {
+        test: "hhello",
+      })
       .then(function (response) {
         console.log(response.data);
       })
@@ -45,7 +50,17 @@ export default class FaceManage extends Component {
         );
         if (res.status == 200) {
           console.log("res",res.data);
-          this.setState({ StudentList: res.data });
+          const StudentList = res.data;
+          const StudentHasNoPic = [];
+          const StudentHasPic = [];
+          for( var i = 0; i < StudentList.length; i++){
+            if(StudentList[i].image === ""){
+              StudentHasNoPic[i] = StudentList[i]
+            }else{
+              StudentHasPic[i] = StudentList[i]
+            }
+          }
+          this.setState({ StudentList: res.data, StudentHasPic:StudentHasPic, StudentHasNoPic:StudentHasNoPic});
           console.log("StudentList",this.state.StudentList);
         }
       } catch (err) {
@@ -56,6 +71,9 @@ export default class FaceManage extends Component {
 
   render() {
     const { StudentList } = this.state;
+    const { StudentHasNoPic } = this.state;
+    const { StudentHasPic } = this.state;
+    console.log("state",this.state);
     console.log("StudentList in render",StudentList);
     return (
       <>
@@ -87,7 +105,7 @@ export default class FaceManage extends Component {
                     <h5 className="title" style={{textAlign: "center"}}>Student List</h5>
                   </CardHeader>
                <CardBody>
-                    {StudentList.map((studentObj) => {
+                    {StudentHasPic.map((studentObj) => {
                       return (
                         <div key={studentObj.studentId} >
                         <Row md={12}>
@@ -98,7 +116,34 @@ export default class FaceManage extends Component {
                             <h6>{studentObj.firstName + " " + studentObj.lastName}</h6>
                           </Col>
                           <Col md={4}>
-                            <a href="">View Photo</a>
+                            <a href={studentObj.image}>View Photo</a>
+                          </Col>
+                        </Row>
+                        <hr/>
+                        </div>
+                      );
+                    })}
+                  </CardBody>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    {" "}
+                    <h5 className="title" style={{textAlign: "center"}}>The List of Students do not have Picture</h5>
+                  </CardHeader>
+               <CardBody>
+                    {StudentHasNoPic.map((studentObj) => {
+                      return (
+                        <div key={studentObj.studentId} >
+                        <Row md={12}>
+                        <Col md={4}>
+                            <h6 className="tableCenter">{studentObj.studentId}</h6>
+                          </Col>
+                          <Col md={4}>
+                            <h6>{studentObj.firstName + " " + studentObj.lastName}</h6>
+                          </Col>
+                          <Col md={4}>
+                            <a href="">Add Photo</a>
                           </Col>
                         </Row>
                         <hr/>

@@ -22,6 +22,7 @@ import {
   Input,
   UncontrolledTooltip,
 } from "reactstrap";
+import cookie from 'react-cookies'
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
@@ -33,7 +34,11 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 //   dashboard24HoursPerformanceChart,
 // } from "variables/charts.js";
 
-function Attendance() {
+function Attendance(props) {
+
+  console.log(props)
+  const uid = cookie.load("uid")
+  console.log("uid",uid)
 
 const studentAttenAdmin={
   stu1:{
