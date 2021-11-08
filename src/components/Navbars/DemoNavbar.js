@@ -94,6 +94,13 @@ function DemoNavbar(props) {
     cookie.remove("firstName");
     cookie.remove("lastName");
     cookie.remove("role");
+    cookie.remove("address");
+    cookie.remove("country");
+    cookie.remove("email");
+    cookie.remove("gender");
+    cookie.remove("intro");
+    cookie.remove("major");
+    cookie.remove("post");
     window.location.href = '/'
   }
 

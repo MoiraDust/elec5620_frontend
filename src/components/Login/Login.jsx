@@ -65,7 +65,14 @@ export default class Login extends Component {
             } else {
               console.log("loged user", userInfo[i]);
               this.setState({ logedUser: userInfo[i] });
-              cookie.save("account", userInfo[i].accouunt);
+              cookie.save("account", userInfo[i].account);
+              cookie.save("address", userInfo[i].address);
+              cookie.save("country", userInfo[i].country);
+              cookie.save("email", userInfo[i].email);
+              cookie.save("gender", userInfo[i].gender);
+              cookie.save("intro", userInfo[i].intro);
+              cookie.save("major", userInfo[i].major);
+              cookie.save("post", userInfo[i].post);
               cookie.save("uid", userInfo[i].id);
               cookie.save("firstName", userInfo[i].firstName);
               cookie.save("lastName", userInfo[i].lastName);
