@@ -50,9 +50,9 @@ function User() {
     country:"Japan",
     major:"Master of Data Science"
   };
-  
-  submitUserInfo=()=>{
 
+  function submitUserInfo() {
+    console.log("clicked");
   }
 
   return (
@@ -237,7 +237,8 @@ function User() {
 
                     <div>
                     <small className="authorName">
-                      <Button onClick={this.submitUserInfo}>Submit</Button>
+                      {/* <Button onClick={this.submitUserInfo}>Submit</Button> */}
+                      <Button className="btn btn-success" onClick={submitUserInfo}>Submit</Button>
                     </small>
                   </div>
                   </Row>
