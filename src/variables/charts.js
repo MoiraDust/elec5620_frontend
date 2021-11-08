@@ -148,18 +148,11 @@ const dashboardPanelChart = {
 
     return {
       labels: [
-        "JAN",
-        "FEB",
-        "MAR",
-        "APR",
-        "MAY",
-        "JUN",
-        "JUL",
-        "AUG",
-        "SEP",
-        "OCT",
-        "NOV",
-        "DEC",
+        "week1",
+        "week2",
+        "week3",
+        "week4",
+        "week5",
       ],
       datasets: [
         {
