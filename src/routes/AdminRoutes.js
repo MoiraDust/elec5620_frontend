@@ -38,7 +38,7 @@ var adminRoutes = [
   },
   {
     path: "/face-manage",
-    name: "Face Management",
+    name: "Student Management",
     icon: "business_badge",
     component: FaceManage,
     layout: "/admin",
