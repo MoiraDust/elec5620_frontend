@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "assets/css/login.css";
 import {
   Button,
   Card,
@@ -101,7 +102,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-div">
         ACCOUNT:
         <Input
           placeholder="Account"
