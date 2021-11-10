@@ -13,8 +13,8 @@ import {
   } from "reactstrap";
 
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-import ReplyBox from "./ReplyBox"
 import ReplyList from "./ReplyList"
+import Logout from "../../components/Login/Logout.jsx";
 import "./Discussion.css"
 
 export default class DiscussionContent extends Component {
@@ -24,49 +24,15 @@ export default class DiscussionContent extends Component {
   }
 
   componentDidMount() {
-    console.log("this.props",this.props);
-    /* const replyObj = this.props.location.state.TopicObj.topic.replyObj
-    const topicObj = this.props.location.state.TopicObj.topic
-    console.log("topicObj",topicObj);
-    console.log("replyObj",replyObj); */
+    console.log("props in discontent",this.props);
   }
 
   render() {
-    const replyObj = this.props.location.state.TopicObj.topic.replyObj
     const topicObj = this.props.location.state.TopicObj.topic
     return (
       <>
-       <PanelHeader size="sm" />
-      <div className="contentBox">
-        <Row>
-          <Col md={12}>
-            <Card className="contentCard">
-              <CardHeader>
-                <h3 className="disTitle">{topicObj.title}</h3>
-                <hr/>
-              </CardHeader>
-              <CardBody>
-                <div className="disContent">
-                  <blockquote>
-                    <p>
-                    {topicObj.content}{" "}
-                    </p>
-                  </blockquote>
-                </div>
-                <div>
-                <small className="authorName">
-                   -- {topicObj.authorName}
-                </small>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        </div>
-        <ReplyList replyObj={replyObj} topicObj={topicObj}/>
+       <Logout />
+       <ReplyList  topicObj={topicObj}/>
       </>
     );
   }

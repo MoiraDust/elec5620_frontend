@@ -31,6 +31,12 @@
 }
 
 .dashboardbox{
-    height: 380px;
+    height: 340px;
     overflow: hidden;
+}
+
+.topic-list{
+    width: 600px;
+    height: 20px;
+    
 }

@@ -25,8 +25,8 @@ ReactDOM.render(
       {/* Discussion  Board */}
       <Route path="/discussion/course/" component={DiscussionList} />
       <Route path="/discussion/course/:courseId/" component={DiscussionList} />
-      <Route path="/discussion/topic/" component={DiscussionContent} />
-      <Route path="/discussion/topic/:topicId/" component={DiscussionContent} />
+      <Route path="/topic/" component={DiscussionContent} />
+      <Route path="/topic/:topicId/" component={DiscussionContent} />
 
       <Route path="/student" render={(props) => <StudentLayout {...props} />} />
 
