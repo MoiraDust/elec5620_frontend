@@ -17,11 +17,6 @@ import {
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 //add content to tiles
-const LectureDate = [
-  new Date(2021, 11, 1),
-  new Date(2021, 11, 5),
-];
-
 function tileContent({ date, view }) {
   // Add class to tiles in month view only
   if (view === 'month' && date.getDay() === 1) {
