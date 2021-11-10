@@ -29,13 +29,13 @@ var adminRoutes = [
     component: Discussion,
     layout: "/admin",
   },
-  {
+ /*  {
     path: "/time-tables",
     name: "Time Table",
     icon: "files_paper",
     component: TimeTable,
     layout: "/admin",
-  },
+  }, */
   {
     path: "/face-manage",
     name: "Student Management",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "assets/css/login.css";
+import "./login.css";
+import profile from "assets/img/a.png";
 import {
   Button,
   Card,
@@ -102,16 +103,30 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="login-div">
-        ACCOUNT:
-        <Input
-          placeholder="Account"
-          name="uname"
-          onChange={this.saveAcc}
-        ></Input>
-        PASSWORD:
-        <Input type="password" name="password" onChange={this.savePwd}></Input>
-        <Button onClick={this.handleInfo}>Log in</Button>
+      <div className="main">
+       <div className="sub-main">
+         <div>
+           <div className="imgs">
+             <div className="container-image">
+               < img src={profile} alt="profile" className="profile"/>
+             </div>
+           </div>
+           <div>
+             <h1>User Login</h1>
+             <div>
+             
+               <input type="text" placeholder="User Name" className="name" onChange={this.saveAcc}/>
+             </div>
+             <div className="second-input">
+              
+               <input type="password" placeholder="Password" className="name" onChange={this.savePwd}/>
+             </div>
+            <div className="login-button">
+            <Button onClick={this.handleInfo}>Login</Button>
+            </div>
+           </div>
+         </div>
+       </div>
       </div>
     );
   }

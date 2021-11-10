@@ -54,6 +54,7 @@ function TimeTable() {
           locale="en-GB"
           selectRange={true}
           tileContent={tileContent}
+          style={{textalign: 'center'}}
           />
         </div>
         {date.length > 0 ? (
@@ -70,7 +71,7 @@ function TimeTable() {
           </p>
         )}
       </div>
-      <div className="content">
+     {/*  <div className="content">
         <Row>
           <Col xs={12}>
             <Card className="card-plain">
@@ -101,7 +102,7 @@ function TimeTable() {
             </Card>
           </Col>
         </Row>
-      </div>
+      </div> */}
     </>
   );
 }
