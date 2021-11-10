@@ -10,6 +10,7 @@ import {
   Col,
   Button,
 } from "reactstrap";
+import axios from "axios";
 
 import DiscussionList from "./DiscussionList";
 
@@ -19,179 +20,102 @@ export default class DiscussionDashboard extends Component {
   state = {
     //后台接受的数据库模拟
     /**课程 和 帖子 列表 */
-    CourseList: [
-      {
-        CourseId: "elec5618",
-        CourseName: "name1",
-        StudentList: [1, 2, 3],
-        TopicObj: [
-          {
-            TopicId: 1,
-            TopicTitle: "Title1",
-            TopicContent: "Content1",
-            TopicAuthorId: 1,
-            TopicAuthorName: "Student1",
-            replyObj:[
-              {
-              replyTo: 1,
-              replyId: 1,
-              AuthorId: 1,
-              AuthorName:"AAA",
-              Content: "reply 1"
-              },
-              {
-                replyTo: 1,
-                replyId: 2,
-                AuthorId: 2,
-                AuthorName:"BBB",
-                Content: "reply 2"
-                },
-                {
-                  replyTo: 1,
-                  replyId: 3,
-                  AuthorId: 3,
-                  AuthorName:"CCC",
-                  Content: "reply 3"
-                  },
-          ]
-          },
-          {
-            TopicId: 2,
-            TopicTitle: "Title2",
-            TopicContent: "Content2",
-            TopicAuthorId: 2,
-            TopicAuthorName: "Student2",
-          },
-        ],
-      },
-
-      {
-        CourseId: "elec5619",
-        CourseName: "name2",
-        StudentList: [1, 2, 3],
-        TopicObj: [
-          {
-            TopicId: 3,
-            TopicTitle: "Title3",
-            TopicContent: "Content3",
-            TopicAuthorId: 1,
-            TopicAuthorName: "Student1",
-          },
-          {
-            TopicId: 4,
-            TopicTitle: "Title4",
-            TopicContent: "Content4",
-            TopicAuthorId: 2,
-            TopicAuthorName: "Student2",
-          },
-        ],
-      },
-
-      {
-        CourseId: "elec5620",
-        CourseName: "name3",
-        StudentList: [1, 2, 3],
-        TopicObj: [
-          {
-            TopicId: 5,
-            TopicTitle: "Title5",
-            TopicContent: "Content5",
-            TopicAuthorId: 1,
-            TopicAuthorName: "Student1",
-          },
-          {
-            TopicId: 6,
-            TopicTitle: "Title6",
-            TopicContent: "Content6",
-            TopicAuthorId: 2,
-            TopicAuthorName: "Student2",
-          },
-        ],
-      },
-
-      {
-        CourseId: "info590",
-        CourseName: "name4",
-        StudentList: [1, 2, 3],
-        TopicObj: [
-          {
-            TopicId: 7,
-            TopicTitle: "Title7",
-            TopicContent: "Content7",
-            TopicAuthorId: 1,
-            TopicAuthorName: "Student1",
-          },
-          {
-            TopicId: 8,
-            TopicTitle: "Title8",
-            TopicContent: "Content8",
-            TopicAuthorId: 2,
-            TopicAuthorName: "Student2",
-          },
-        ],
-      },
-    ],
-
-    /**回帖列表 */
-    CommentList: [
-      {
-        CourseId: "elec5218",
-        TopicId: 1,
-        Content: "123456",
-        AuthorId: 1,
-        AuthorName: "StudentName1",
-      },
-    ],
+    CourseList: []
   };
 
+  componentDidMount() {
+    this.getAllCourse();
+  }
+
+  getAllCourse=()=>{
+    console.log("getAllCourse");
+    (async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/discussion/getAllCourses");
+        if (res.status == 200) {
+          console.log(res.data);
+          const courseObj = res.data;
+          const CourseList = [];
+          for(var i=0; i<courseObj.length; i++) {
+            const courseName = courseObj[i].name;
+            const response = await axios.post("http://localhost:8080/discussion/course", {
+              courseName: courseName,
+            });
+            if(response.status == 200){
+              const topicObj = response.data;
+              console.log("topics in ",courseName," are ",response.data);
+              CourseList.push({courseName:courseName, topicObj:topicObj});
+            }
+          }
+          console.log("CourseList",CourseList);
+          this.setState({CourseList:CourseList});
+        }
+        
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+
+  }
+
+  /* getAllTopics =()=>{
+    console.log("getAllTopics");
+    (async () => {
+      try {
+        const res = await axios.get("http://localhost:8081/api/user/getAllUsers");
+        if (res.status == 200) {
+          
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }
+ */
+  
   render() {
-    const { CourseList, CommentList } = this.state;
+    const { CourseList } = this.state;
+    console.log("CourseList render",CourseList)
     PubSub.publish("CourseList", { CouseList: this.state.CourseList });
-    /*  PubSub.publish('CommentList',{CommentList:CommentList}) */
-    /* console.log("Course", CourseList, "Comment", CommentList); */
     return (
       <div>
-        <Row>
+       <Row>
           <Col md={12} xs={12}>
-            {CourseList.map((CourseObj) => {
+            {CourseList.map((CourseObj,i) => {
               return (
-                <Card key={CourseObj.CourseId}>
+                <Card key={i} className="dashboardbox">
                   <CardHeader>
                     <CardTitle tag="h4">
-                      {/* <Link
-                        to={`/discussion/content/?courseId=${CourseObj.CourseId}`}
-                        courseObj={ CourseObj }
-                      > */}
                       <Link
                         to={{
-                          pathname: `/discussion/course/?courseId=${CourseObj.CourseId}`,
+                          pathname: `/discussion/course/?courseId=${CourseObj.courseName}`,
                           state: {
                             CourseObj: {CourseObj},
                           },
                         }}
                       >
-                        {CourseObj.CourseName}
+                        {CourseObj.courseName}
                       </Link>
                     </CardTitle>
                   </CardHeader>
                   <CardBody>
-                    {CourseObj.TopicObj.map((topic, i) => {
+                    {CourseObj.topicObj.map((topic, i) => {
                       return (
-                        <Alert key={topic.TopicId} color="warning">
+                        <Alert key={i} color="warning">
                           <span>
                             <div>
                               <Link
                               to={{
-                                pathname: `/discussion/topic/?topicId=${topic.TopicId}`,
+                                pathname: `/discussion/topic/?topicId=${topic.id}`,
                                 state: {
                                   TopicObj: {topic},
                                 },
                               }}
                               >
-                                <h5>{topic.TopicTitle}</h5>
+                                <h5>{topic.title}</h5>
                               </Link>
                             </div>
-                            <div>{topic.TopicAuthorName}</div>
+                            <div>{topic.authorName}</div>
                           </span>
                         </Alert>
                       );

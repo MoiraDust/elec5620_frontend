@@ -24,7 +24,7 @@ export default class DiscussionContent extends Component {
   }
 
   componentDidMount() {
-   /*  console.log("this.props",this.props); */
+    console.log("this.props",this.props);
     /* const replyObj = this.props.location.state.TopicObj.topic.replyObj
     const topicObj = this.props.location.state.TopicObj.topic
     console.log("topicObj",topicObj);
@@ -42,20 +42,20 @@ export default class DiscussionContent extends Component {
           <Col md={12}>
             <Card className="contentCard">
               <CardHeader>
-                <h2 className="disTitle">{topicObj.TopicTitle}</h2>
+                <h3 className="disTitle">{topicObj.title}</h3>
                 <hr/>
               </CardHeader>
               <CardBody>
                 <div className="disContent">
                   <blockquote>
-                    <p className="blockquote">
-                    {topicObj.TopicContent}{" "}
+                    <p>
+                    {topicObj.content}{" "}
                     </p>
                   </blockquote>
                 </div>
                 <div>
                 <small className="authorName">
-                   -- {topicObj.TopicAuthorName}
+                   -- {topicObj.authorName}
                 </small>
                 </div>
                 <br/>

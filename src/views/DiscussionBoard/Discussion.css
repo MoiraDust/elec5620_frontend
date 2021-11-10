@@ -29,3 +29,8 @@
 .replyBox{
    margin: 50px;
 }
+
+.dashboardbox{
+    height: 380px;
+    overflow: hidden;
+}

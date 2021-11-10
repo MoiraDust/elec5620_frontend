@@ -15,6 +15,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import qs from "qs";
 import cookie from "react-cookies";
+import Zmage from 'react-zmage'
 
 import AddStudent from "./AddStudent.jsx";
 
@@ -216,19 +217,20 @@ export default class FaceManage extends Component {
                       return (
                         <div key={studentObj.id}>
                           <Row md={12}>
-                            <Col md={4}>
+                            <Col md={6}>
                               <h6 className="tableCenter">{studentObj.id}</h6>
                             </Col>
-                            <Col md={4}>
-                              <h6>
+                            <Col md={6}>
+                              <h6 className="tableCenter">
                                 {studentObj.firstName +
                                   " " +
                                   studentObj.lastName}
                               </h6>
                             </Col>
-                            <Col md={4}>
-                              <a href={studentObj.image}>View Photo</a>
-                            </Col>
+                            {/* <Col md={4}>
+                            <img style={{width:"55px", height:"71px"}}
+                            src={require(`../assets/Faces/${studentObj.img}`).default}></img>
+                            </Col> */}
                           </Row>
                           <hr />
                         </div>
