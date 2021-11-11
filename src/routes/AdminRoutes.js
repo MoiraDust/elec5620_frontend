@@ -57,12 +57,12 @@ var adminRoutes = [
     component: Maps,
     layout: "/admin",
   }, */
-  {
+ /*  {
     path: "/typography",
     name: "Typography",
     icon: "design-2_ruler-pencil",
     component: Typography,
     layout: "/admin",
-  },
+  }, */
 ];
 export default adminRoutes;

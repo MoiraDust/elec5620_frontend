@@ -243,7 +243,7 @@ export default class AttdanceTable extends Component {
                        <tr key={i}>
                          <th>{attdanceObj.userId}</th>
                          <th>{attdanceObj.userName}</th>
-                         <th>Time</th>
+                         <th>{attdanceObj.time}</th>
                        </tr>
                       )
                     })

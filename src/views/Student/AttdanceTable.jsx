@@ -188,13 +188,14 @@ export default class AttdanceTable extends Component {
   }
 
   getAttdance=()=>{
+    const userId = cookie.load("uid");
     (async () => {
       try {
         const res = await axios.get(
           "http://localhost:8080/attendance/getAttendanceByUserId",
           {
             params: {
-              userId: "123145",
+              userId: userId,
             },
           }
         );
@@ -243,7 +244,7 @@ export default class AttdanceTable extends Component {
                        <tr key={i}>
                          <th>{attdanceObj.courseName}</th>
                          <th>{attdanceObj.userName}</th>
-                         <th>2020.06.06</th>
+                         <th>{attdanceObj.time}</th>
                        </tr>
                       )
                     })
