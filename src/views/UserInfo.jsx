@@ -22,16 +22,16 @@ import axios from "axios";
 export default class UserInfo extends Component {
   state = {
     userInfo: {
-      fristName: cookie.load("firstName"),
-      lastName: cookie.load("lastName"),
-      userImage: "smho0607.jpg",
-      userName: cookie.load("firstName") + " " + cookie.load("lastName"),
-      introduce:cookie.load("intro"),
-      email: cookie.load("email"),
-      address: cookie.load("address"),
-      postalCode: cookie.load("post"),
-      country: cookie.load("country"),
-      major: cookie.load("major"),
+      // fristName: cookie.load("firstName"),
+      // lastName: cookie.load("lastName"),
+      // userImage: "smho0607.jpg",
+      // userName: cookie.load("firstName") + " " + cookie.load("lastName"),
+      // introduce:cookie.load("intro"),
+      // email: cookie.load("email"),
+      // address: cookie.load("address"),
+      // postalCode: cookie.load("post"),
+      // country: cookie.load("country"),
+      // major: cookie.load("major"),
     },
   };
 
@@ -43,6 +43,20 @@ export default class UserInfo extends Component {
           // img: this.state.img,
           // name: this.state.name,
           
+        });
+        const data=req.data;
+        this.setState({
+         
+          // fristName: data.
+          // lastName: data.
+          // userImage: data.
+          // userName: data.
+          // introduce:data.
+          // email: data.
+          // address: data.
+          // postalCode: data.
+          // country: data.
+          // major: data.
         });
         // if (res.status === 200) {
         //   // console.log(res.data);
@@ -64,9 +78,16 @@ export default class UserInfo extends Component {
     (async () => {
       try {
         const res = await axios.post("http://localhost:8080/profile/postUserProfile", {
-          uid: this.state.uid,
-          img: this.state.img,
-          name: this.state.name,
+          // fristName: this.state.
+          // lastName: this.state.
+          // userImage: this.state.
+          // userName: this.state.
+          // introduce:this.state.
+          // email: this.state.
+          // address: this.state.
+          // postalCode: this.state.
+          // country: this.state.
+          // major: this.state.
         });
         if (res.status === 200) {
           // console.log(res.data);
