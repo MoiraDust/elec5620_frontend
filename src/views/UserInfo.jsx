@@ -36,7 +36,51 @@ export default class UserInfo extends Component {
   };
 
   componentDidMount() {
-    
+    (async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/api/user/addImg", {
+          uid: this.state.uid,
+          img: this.state.img,
+          name: this.state.name,
+        });
+        // if (res.status === 200) {
+        //   // console.log(res.data);
+        //   window.alert("success!");
+        //   window.location.reload();
+        //   if (res.data === "success") {
+            
+        //   } else {
+        //     window.alert("unknown error");
+        //   }
+        // }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }
+
+  submitUserInfo(){
+    (async () => {
+      try {
+        const res = await axios.post("http://localhost:8080/api/user/addImg", {
+          uid: this.state.uid,
+          img: this.state.img,
+          name: this.state.name,
+        });
+        if (res.status === 200) {
+          // console.log(res.data);
+          window.alert("success!");
+          window.location.reload();
+          if (res.data === "success") {
+            
+          } else {
+            window.alert("unknown error");
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
   }
 
   render() {
