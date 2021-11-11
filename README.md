@@ -21,7 +21,16 @@ npm start
 ## Technologies 
 
 * Backend framework: [SpringBoot](https://spring.io/projects/spring-boot)
+* Frontend framework: [React](https://reactnative.dev/), [Bootstrap](https://getbootstrap.com/)
 * Distributed Server: [Eureka](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-eureka-server.html)
-* Database Management: [MyBatis](https://mybatis.org/mybatis-3/), [JPA](https://spring.io/projects/spring-data-jpa)
+* Database Management Framework: [MyBatis](https://mybatis.org/mybatis-3/), [JPA](https://spring.io/projects/spring-data-jpa)
 * Face Recognition API: [Baidu API](https://intl.cloud.baidu.com/product/face.html)
 * Face Capture API: [Face-API](https://github.com/justadudewhohacks/face-api.js/)
+
+Backend framework: SpringBoot 
+
+Distributed Server: Eureka
+Database: MySQL
+Database Management Framework: MyBatis, JPA
+Face Recognition API: Baidu API
+Face Capture API: Face-API
