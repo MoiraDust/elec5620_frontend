@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect , useState  } from "react";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+import axios from "axios";
 
 // reactstrap components
 import {
@@ -23,6 +24,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 import cookie from 'react-cookies'
+import AttendanceTable from "./AttdanceTable.jsx";
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
@@ -40,7 +42,7 @@ function Attendance(props) {
   const uid = cookie.load("uid")
   console.log("uid",uid)
 
-const studentAttenAdmin={
+/* const studentAttenAdmin={
   stu1:{
     stuName:"John",
     atten:{week1:true,week2:false,week3:true,week4:false,week5:true},
@@ -69,10 +71,10 @@ const studentAttenAdmin={
     atten:{week1:true,week2:false,week3:true,week4:true,week5:true},
   },
   attendenceTrend:[2,6,5,4,5,6],
-};
+}; */
 
 
-const dashboardPanelChart = {
+/* const dashboardPanelChart = {
   data: (canvas) => {
     const ctx = canvas.getContext("2d");
     var chartColor = "#FFFFFF";
@@ -107,9 +109,9 @@ const dashboardPanelChart = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          tension: 0.4,
-          data: studentAttenAdmin.attendenceTrend,
-        },
+          tension: 0.4, */
+          /* data: studentAttenAdmin.attendenceTrend, */
+       /*  },
       ],
     };
   },
@@ -168,11 +170,25 @@ const dashboardPanelChart = {
       },
     },
   },
-}; 
+};  */
+
+/* const [studentAttenAdmin, setStudentAttenAdmin] = useState([{  }]);
+
+useEffect(async () => {
+  const response = await axios.get(
+    "http://localhost:8080/attendance/getAttendanceByCourseName",
+    {
+      params: {
+        courseName: "elec5620",
+      },
+    }
+  );
+  setStudentAttenAdmin(response.data);
+}, []); */
 
   return (
     <>
-      <PanelHeader
+     {/* <PanelHeader
         size="lg"
         content={
           <Line
@@ -180,11 +196,11 @@ const dashboardPanelChart = {
             options={dashboardPanelChart.options}
           />
         }
-      />
+      /> */}
+      
       <div className="content">
-        
+        {/*
         <Row>
-          
           <Col xs={12} md={12}>
             <Card>
               <CardHeader>
@@ -259,7 +275,8 @@ const dashboardPanelChart = {
               </CardBody>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
+        <AttendanceTable />
       </div>
     </>
   );
