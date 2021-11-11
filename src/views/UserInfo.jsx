@@ -38,10 +38,11 @@ export default class UserInfo extends Component {
   componentDidMount() {
     (async () => {
       try {
-        const res = await axios.get("http://localhost:8080/api/user/addImg", {
-          uid: this.state.uid,
-          img: this.state.img,
-          name: this.state.name,
+        const res = await axios.get("localhost:8080/profile/getUserProfile", {
+          // uid: this.state.uid,
+          // img: this.state.img,
+          // name: this.state.name,
+          
         });
         // if (res.status === 200) {
         //   // console.log(res.data);
@@ -62,7 +63,7 @@ export default class UserInfo extends Component {
   submitUserInfo(){
     (async () => {
       try {
-        const res = await axios.post("http://localhost:8080/api/user/addImg", {
+        const res = await axios.post("http://localhost:8080/profile/postUserProfile", {
           uid: this.state.uid,
           img: this.state.img,
           name: this.state.name,
@@ -131,7 +132,7 @@ export default class UserInfo extends Component {
                   </Col>
                   <Col className="px-1" md="3">
                     <FormGroup>
-                      <label>Username</label>
+                      <label>Username (disabled)</label>
                       <Input
                         defaultValue={userInfo.userName}
                         placeholder="Username"
