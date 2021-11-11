@@ -228,7 +228,7 @@ export default class AttdanceTable extends Component {
             <Card>
               <CardHeader>
                 <h5 className="card-category">All Student List</h5>
-                <CardTitle tag="h4" style={{color:"red"}}>ELEC5620 Attendence Stats</CardTitle>
+                <CardTitle tag="h4" style={{color:"red"}}>My Attendence Stats</CardTitle>
               </CardHeader>
               <CardBody>
                 <Table responsive>
