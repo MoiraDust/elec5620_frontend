@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect , useState  } from "react";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+import axios from "axios";
 
 // reactstrap components
 import {
@@ -23,6 +24,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 import cookie from 'react-cookies'
+import AttendanceTable from "./AttdanceTable.jsx";
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
@@ -34,36 +36,45 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 //   dashboard24HoursPerformanceChart,
 // } from "variables/charts.js";
 
-function Attendance() {
+function Attendance(props) {
 
+  console.log(props)
   const uid = cookie.load("uid")
   console.log("uid",uid)
 
-const studentAtten={
-  course1:{
-    courseName:"INFO3963",
+/* const studentAttenAdmin={
+  stu1:{
+    stuName:"John",
     atten:{week1:true,week2:false,week3:true,week4:false,week5:true},
     
   },
-  course2:{
-    courseName:"COMP4983",
+  stu2:{
+    stuName:"Mike",
     atten:{week1:true,week2:true,week3:true,week4:true,week5:true},
     
   },
-  course3:{
-    courseName:"IDEA2369",
+  stu3:{
+    stuName:"Huang",
     atten:{week1:true,week2:false,week3:true,week4:true,week5:true},
     
   },
-  course4:{
-    courseName:"ELEC8724",
+  stu4:{
+    stuName:"Alex",
     atten:{week1:true,week2:true,week3:true,week4:false,week5:true},
   },
-  attendenceTrend:[2,3,4,3,4],
-};
+  stu5:{
+    stuName:"Xie",
+    atten:{week1:true,week2:true,week3:true,week4:false,week5:true},
+  },
+  stu6:{
+    stuName:"Stephen",
+    atten:{week1:true,week2:false,week3:true,week4:true,week5:true},
+  },
+  attendenceTrend:[2,6,5,4,5,6],
+}; */
 
 
-const dashboardPanelChart = {
+/* const dashboardPanelChart = {
   data: (canvas) => {
     const ctx = canvas.getContext("2d");
     var chartColor = "#FFFFFF";
@@ -81,6 +92,7 @@ const dashboardPanelChart = {
         "week3",
         "week4",
         "week5",
+        "week6",
       ],
       datasets: [
         {
@@ -97,9 +109,9 @@ const dashboardPanelChart = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          tension: 0.4,
-          data: studentAtten.attendenceTrend,
-        },
+          tension: 0.4, */
+          /* data: studentAttenAdmin.attendenceTrend, */
+       /*  },
       ],
     };
   },
@@ -158,11 +170,25 @@ const dashboardPanelChart = {
       },
     },
   },
-}; 
+};  */
+
+/* const [studentAttenAdmin, setStudentAttenAdmin] = useState([{  }]);
+
+useEffect(async () => {
+  const response = await axios.get(
+    "http://localhost:8080/attendance/getAttendanceByCourseName",
+    {
+      params: {
+        courseName: "elec5620",
+      },
+    }
+  );
+  setStudentAttenAdmin(response.data);
+}, []); */
 
   return (
     <>
-      <PanelHeader
+     {/* <PanelHeader
         size="lg"
         content={
           <Line
@@ -170,15 +196,15 @@ const dashboardPanelChart = {
             options={dashboardPanelChart.options}
           />
         }
-      />
+      /> */}
+      
       <div className="content">
-        
+        {/*
         <Row>
-          
           <Col xs={12} md={12}>
             <Card>
               <CardHeader>
-                <h5 className="card-category">All Courses List</h5>
+                <h5 className="card-category">All Student List</h5>
                 <CardTitle tag="h4">Attendence Stats</CardTitle>
               </CardHeader>
               <CardBody>
@@ -186,47 +212,62 @@ const dashboardPanelChart = {
                   <thead className="text-primary">
                     <tr>
                       <th>Time</th>
-                      <th>{studentAtten.course1.courseName}</th>
-                      <th>{studentAtten.course2.courseName}</th>
-                      <th>{studentAtten.course3.courseName}</th>
-                      <th>{studentAtten.course4.courseName}</th>
+                      <th>{studentAttenAdmin.stu1.stuName}</th>
+                      <th>{studentAttenAdmin.stu2.stuName}</th>
+                      <th>{studentAttenAdmin.stu3.stuName}</th>
+                      <th>{studentAttenAdmin.stu4.stuName}</th>
+                      <th>{studentAttenAdmin.stu5.stuName}</th>
+                      <th>{studentAttenAdmin.stu6.stuName}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Week1</td>
-                      <td>{studentAtten.course1.atten.week1? "√" :"Absent"}</td>
-                      <td>{studentAtten.course2.atten.week1? "√" :"Absent"}</td>
-                      <td>{studentAtten.course3.atten.week1? "√" :"Absent"}</td>
-                      <td >{studentAtten.course4.atten.week1? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu1.atten.week1? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu2.atten.week1? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu3.atten.week1? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu4.atten.week1? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu5.atten.week1? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu6.atten.week1? "√" :"Absent"}</td>
                     </tr>
                     <tr>
                     <td>Week2</td>
-                      <td>{studentAtten.course1.atten.week2? "√" :"Absent"}</td>
-                      <td>{studentAtten.course2.atten.week2? "√" :"Absent"}</td>
-                      <td>{studentAtten.course3.atten.week2? "√" :"Absent"}</td>
-                      <td >{studentAtten.course4.atten.week2? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu1.atten.week2? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu2.atten.week2? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu3.atten.week2? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu4.atten.week2? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu5.atten.week2? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu6.atten.week2? "√" :"Absent"}</td>
                     </tr>
                     <tr>
                     <td>Week3</td>
-                      <td>{studentAtten.course1.atten.week3? "√" :"Absent"}</td>
-                      <td>{studentAtten.course2.atten.week3? "√" :"Absent"}</td>
-                      <td>{studentAtten.course3.atten.week3? "√" :"Absent"}</td>
-                      <td >{studentAtten.course4.atten.week3? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu1.atten.week3? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu2.atten.week3? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu3.atten.week3? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu4.atten.week3? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu5.atten.week3? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu6.atten.week3? "√" :"Absent"}</td>
+
                     </tr>
                     <tr>
                     <td>Week4</td>
-                      <td>{studentAtten.course1.atten.week4? "√" :"Absent"}</td>
-                      <td>{studentAtten.course2.atten.week4? "√" :"Absent"}</td>
-                      <td>{studentAtten.course3.atten.week4? "√" :"Absent"}</td>
-                      <td >{studentAtten.course4.atten.week4? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu1.atten.week4? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu2.atten.week4? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu3.atten.week4? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu4.atten.week4? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu5.atten.week4? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu6.atten.week4? "√" :"Absent"}</td>
+
                     </tr>
                     <tr>
                     <td>Week5</td>
-                      <td>{studentAtten.course1.atten.week5? "√" :"Absent"}</td>
-                      <td>{studentAtten.course2.atten.week5? "√" :"Absent"}</td>
-                      <td>{studentAtten.course3.atten.week5? "√" :"Absent"}</td>
-                      <td >{studentAtten.course4.atten.week5? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu1.atten.week5? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu2.atten.week5? "√" :"Absent"}</td>
+                      <td>{studentAttenAdmin.stu3.atten.week5? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu4.atten.week5? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu5.atten.week5? "√" :"Absent"}</td>
+                      <td >{studentAttenAdmin.stu6.atten.week5? "√" :"Absent"}</td>
+
                      
                     </tr>
                   </tbody>
@@ -234,7 +275,8 @@ const dashboardPanelChart = {
               </CardBody>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
+        <AttendanceTable />
       </div>
     </>
   );
